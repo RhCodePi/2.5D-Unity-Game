@@ -13,6 +13,7 @@ namespace project
 
         [SerializeField] private float speed;
         [SerializeField] private Animator animator;
+        [SerializeField] private Material material;
         void Update()
         {
             if (VirtualInputManager.Instance.MoveLeft && VirtualInputManager.Instance.MoveRight)
@@ -37,6 +38,24 @@ namespace project
                 this.gameObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                 animator.SetBool(TransitionParameter.move.ToString(), true);
+            }
+        }
+
+        public void ChangeMaterial()
+        {
+            if(material == null)
+            {
+                Debug.LogError("No material specifeid");
+            }
+
+            Renderer[] arrMaterials = this.gameObject.GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer r in arrMaterials)
+            {
+                if(r.gameObject != this.gameObject)
+                {
+                    r.material = material;
+                }
             }
         }
     }
