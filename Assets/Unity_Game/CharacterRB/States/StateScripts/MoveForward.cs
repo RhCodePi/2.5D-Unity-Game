@@ -11,23 +11,23 @@ namespace project
         {
             CharacterControl character = characterState.GetCharacterControl(animator);
 
-            if (VirtualInputManager.Instance.MoveLeft && VirtualInputManager.Instance.MoveRight)
+            if (character.MoveLeft && character.MoveRight)
             {
                 animator.SetBool(TransitionParameter.move.ToString(), false);
                 return;
             }
-            if (!VirtualInputManager.Instance.MoveLeft && !VirtualInputManager.Instance.MoveRight)
+            if (!character.MoveLeft && !character.MoveRight)
             {
                 animator.SetBool(TransitionParameter.move.ToString(), false);
                 return;
             }
-            if (VirtualInputManager.Instance.MoveLeft)
+            if (character.MoveLeft)
             {
                 character.transform.Translate(Vector3.forward * speed* Time.deltaTime);
                 character.transform.rotation = Quaternion.Euler(0, 180f, 0);
             }
 
-            if (VirtualInputManager.Instance.MoveRight)
+            if (character.MoveRight)
             {
                 character.transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);

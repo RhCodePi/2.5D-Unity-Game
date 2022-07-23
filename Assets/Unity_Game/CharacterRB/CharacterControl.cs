@@ -14,6 +14,7 @@ namespace project
         public float speed;
         public Animator animator;
         public Material material;
+        public bool MoveRight, MoveLeft;
 
         public void ChangeMaterial()
         {
